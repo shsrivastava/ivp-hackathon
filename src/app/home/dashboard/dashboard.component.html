@@ -1,0 +1,28 @@
+<!-- <mat-card> -->
+<div class="container">
+    <app-analytics-card
+        *ngFor="let t of tiles"
+        class="col-sm-2"
+        [body]="'1,211'"
+    ></app-analytics-card>
+</div>
+<!-- <mat-card  > -->
+<div class="grid-container" *ngIf="showGrid">
+    <dx-data-grid
+        id="gridContainer"
+        [dataSource]="companyData"
+        [columns]="['date', 'open', 'close', 'vol']"
+        [showBorders]="true"
+    >
+    <dxo-paging [pageSize]="10"></dxo-paging>
+    <dxo-pager 
+        [showPageSizeSelector]="true"
+        [allowedPageSizes]="[5, 10, 20]"
+        [showInfo]="true">
+    </dxo-pager>
+    
+    </dx-data-grid>
+</div>
+
+<!-- </mat-card> -->
+<!-- </mat-card> -->

@@ -1,0 +1,73 @@
+<!-- <dx-toolbar [items]="toolbarContent"></dx-toolbar>
+<dx-drawer
+    [openedStateMode]="selectedOpenMode"
+    [position]="selectedPosition"
+    [revealMode]="selectedRevealMode"
+    template="template"
+    [opened]="true"
+    [height]="400"
+    [closeOnOutsideClick]="true"
+>
+    <div
+        *dxTemplate="let data of 'template'"
+        style="width: 200px"
+    >
+        <dx-list
+            class="panel-list dx-theme-accent-as-background-color"
+            [dataSource]="navigation"
+            [hoverStateEnabled]="false"
+            [activeStateEnabled]="false"
+            [focusStateEnabled]="false"
+        >
+        </dx-list>
+    </div>
+    <ng-content></ng-content>
+
+</dx-drawer> -->
+<mat-toolbar color="primary">
+  
+  <mat-icon class="pointer" (click)="drawer.toggle()">menu</mat-icon>
+</mat-toolbar>
+
+<!-- <mat-sidenav-container>
+    <mat-sidenav #sidenav [mode]="'push'" [hasBackdrop]="false">
+      <mat-nav-list>  
+        <a mat-list-item [routerLink]="'/dashboard'"> Dashboard </a>
+        <a mat-list-item [routerLink]="'/home/charts'"> Visualize </a>
+        <a mat-list-item [routerLink]="'/whitebaord'"> Whiteboards </a>  
+      </mat-nav-list>
+    </mat-sidenav>
+    <mat-sidenav-content>
+      <div style="height: 88vh;">
+  
+        <router-outlet></router-outlet>
+      </div>
+    </mat-sidenav-content>
+  </mat-sidenav-container>  -->
+  <mat-drawer-container class="example-container" [hasBackdrop]="false">
+      <mat-drawer #drawer [mode]="'push'">
+          <mat-nav-list>  
+              <a mat-list-item [routerLink]="'/dashboard'"> Dashboard </a>
+              <a mat-list-item [routerLink]="'/home/charts'"> Visualize </a>
+              <a mat-list-item [routerLink]="'/whiteboard/boards'"> Whiteboards </a>  
+            </mat-nav-list>
+      </mat-drawer>
+      <mat-drawer-content>
+          <!-- <mat-sidenav-container>
+              <mat-sidenav #sidenav [mode]="'push'"> -->
+                <!-- <mat-nav-list>  
+                  <a mat-list-item [routerLink]="'/dashboard'"> Dashboard </a>
+                  <a mat-list-item [routerLink]="'/home/charts'"> Visualize </a>
+                  <a mat-list-item [routerLink]="'/whitebaord'"> Whiteboards </a>  
+                </mat-nav-list> -->
+              <!-- </mat-sidenav>
+              <mat-sidenav-content>
+                <div style="height: 88vh;">
+            
+                  <router-outlet></router-outlet>
+                </div>
+              </mat-sidenav-content>
+            </mat-sidenav-container> -->
+                  <router-outlet></router-outlet>
+                </mat-drawer-content>
+  </mat-drawer-container>

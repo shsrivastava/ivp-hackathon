@@ -1,0 +1,39 @@
+@import '../../../styles/colors.scss';
+
+.card-header{
+    margin: -5px 15px 0px;
+    padding: 0;
+    position: relative;
+    height: 80%
+}
+
+.card-icon{
+    border-radius: 3px;
+    background-color: $clr-base-1-light;
+    color: white;
+    padding: 15px;
+    margin-top: -20px;
+    margin-right: 15px;
+    float: left;
+}
+
+.card{
+    position: relative;
+    height: 100px
+}
+.footer{
+    color: grey;
+    font-size: 12px;
+    border-top: 1px solid lightgray;
+    /* height: 67%; */
+    /* float: right; */
+    /* margin: 10px 0px 10px 0px; */
+    padding: 5px;
+
+}
+.content{
+    font-size: 23px;
+    float: right;
+    color: gray;
+
+}

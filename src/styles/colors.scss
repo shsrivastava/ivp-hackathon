@@ -1,0 +1,9 @@
+@import "light-theme.scss";
+/* 
+Base and accent colors
+*/
+$clr-dark-base:mat-color($hackathon-app-primary,800);
+$clr-base:mat-color($hackathon-app-primary,500);
+$clr-accent:mat-color($hackathon-app-accent,500);
+$clr-warn:mat-color($hackathon-app-warn,500);
+$clr-base-1-light:mat-color($hackathon-app-primary,400);

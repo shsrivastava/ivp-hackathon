@@ -12,3 +12,13 @@
 .grid-container{
     margin-top: 10px
 }
+
+
+\deep\ #gridContainer .dx-filterbuilder-overlay .dx-scrollable-container {
+    max-height: 400px;
+}
+
+\deep\ #gridContainer .dx-datagrid .dx-row > td {
+    font-size: 12px !important;
+    line-height: 10px !important;
+}

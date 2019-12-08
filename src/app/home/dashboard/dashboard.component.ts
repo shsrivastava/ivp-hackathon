@@ -12,7 +12,8 @@ export class DashboardComponent implements OnInit {
 
   public companyData: HomeInterface.ICompanyData[] = [];
 public showGrid : boolean = false;
-
+public popupPosition : any = { of: window, at: "top", my: "top", offset: { y: 10 }};
+public filterValue : Array<any> =[]
   constructor(private _companyDataService: CompanyDataService) { }
 
   ngOnInit() {

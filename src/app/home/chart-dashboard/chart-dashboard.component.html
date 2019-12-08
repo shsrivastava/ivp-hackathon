@@ -1,0 +1,92 @@
+<div class="grid-container">
+  <h1 class="mat-h1">Dashboard</h1>
+  <mat-grid-list [cols]="cols" rowHeight="40vh">
+    <mat-grid-tile *ngFor="let card of cards | async" [colspan]="card.cols" [rowspan]="card.rows">
+      <mat-card class="dashboard-card">
+        <!-- <mat-card-header>
+          <mat-card-title>
+            {{card.title}}
+            <button mat-icon-button class="more-button" [matMenuTriggerFor]="menu" aria-label="Toggle menu">
+              <mat-icon>more_vert</mat-icon>
+            </button>
+            <mat-menu #menu="matMenu" xPosition="before">
+              <button mat-menu-item>Expand</button>
+              <button mat-menu-item>Remove</button>
+            </mat-menu>
+          </mat-card-title> -->
+        <!-- </mat-card-header> -->
+        <mat-card-content class="dashboard-card-content">
+          <div *ngIf="card.id==3 && prepareChart">
+              <dx-chart
+              #chart2
+              id="chart"
+              [redrawOnResize]="true"
+              [dataSource]="dataSource"
+              [title]="title"
+              [palette]="['#00ced1', '#008000', '#ffd700', '#ff7f50']"
+              (onSeriesClick)="onSeriesClick($event)">
+              <dxo-common-series-settings type="bubble"></dxo-common-series-settings>
+              <dxo-export [enabled]="true"></dxo-export>
+              <dxo-legend
+                  position="inside"
+                  horizontalAlignment="left">
+                  <dxo-border [visible]="true"></dxo-border>
+              </dxo-legend>
+              <dxo-argument-axis title="Total Population">
+                  <dxo-label [customizeText]="argumentCustomizeText"></dxo-label>
+              </dxo-argument-axis>
+              <dxi-value-axis title="Population with Age over 60">
+                  <dxo-label [customizeText]="valueCustomizeText"></dxo-label>
+              </dxi-value-axis>
+              <dxo-tooltip
+                  [enabled]="true"
+                  location="edge"
+                  [customizeTooltip]="customizeTooltip">
+              </dxo-tooltip>
+              <dxi-series
+                  *ngFor="let correlation of correlationSource"
+                  [name]="correlation.name"
+                  [argumentField]="correlation.argumentField"
+                  [valueField]="correlation.valueField"
+                  [sizeField]="correlation.sizeField"
+                  [tagField]="correlation.tagField">
+              </dxi-series>
+          </dx-chart>
+
+          </div>
+          <div *ngIf="card.id!=3 && prepareChart">
+              <dx-chart
+              #chart1
+              id="chart"
+              [redrawOnResize]="true"
+              palette="violet"
+              title="Crude Oil Prices in 2005"
+              [dataSource]="oilPrices">
+              <dxo-common-series-settings
+                  argumentField="date"
+                  type="rangeBar"></dxo-common-series-settings>
+              <dxi-value-axis>
+                  <dxo-title text="$ per barrel"></dxo-title>
+              </dxi-value-axis>
+              <dxo-argument-axis>
+                  <dxo-label format="month"></dxo-label>
+              </dxo-argument-axis>
+              <dxo-export [enabled]="true"></dxo-export>
+              <dxo-legend
+                  verticalAlignment="bottom"
+                  horizontalAlignment="center"></dxo-legend>
+              <dxi-series
+                  rangeValue1Field="aVal1"
+                  rangeValue2Field="aVal2"
+                  name="ANS West Coast"></dxi-series>
+              <dxi-series
+                  rangeValue1Field="tVal1"
+                  rangeValue2Field="tVal2"
+                  name="West Texas Intermediate"></dxi-series>
+          </dx-chart>
+          </div>
+        </mat-card-content>
+      </mat-card>
+    </mat-grid-tile>
+  </mat-grid-list>
+</div>

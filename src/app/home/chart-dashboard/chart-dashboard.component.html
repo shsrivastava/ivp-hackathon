@@ -1,5 +1,13 @@
 <div class="grid-container">
-  <h1 class="mat-h1">Dashboard</h1>
+  <!-- <h1 class="mat-h1">Dashboard</h1> -->
+  <div class="container">
+      <app-analytics-card
+          *ngFor="let t of tiles"
+          class="col-sm-2"
+          [body]="'1,211'"
+      ></app-analytics-card>
+  </div>
+
   <mat-grid-list [cols]="cols" rowHeight="40vh">
     <mat-grid-tile *ngFor="let card of cards | async" [colspan]="card.cols" [rowspan]="card.rows">
       <mat-card class="dashboard-card">
@@ -16,7 +24,8 @@
           </mat-card-title> -->
         <!-- </mat-card-header> -->
         <mat-card-content class="dashboard-card-content">
-          <div *ngIf="card.id==3 && prepareChart">
+          <div *ngIf="card.id==3"> <app-grid-view></app-grid-view></div>
+          <div *ngIf="card.id==0 && prepareChart">
               <dx-chart
               #chart2
               id="chart"

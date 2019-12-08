@@ -1,20 +1,18 @@
-<div class="container">
-    <app-analytics-card
-        *ngFor="let t of tiles"
-        class="col-sm-2"
-        [body]="'1,211'"
-    ></app-analytics-card>
-</div>
 <div
     class="grid-container"
     *ngIf="showGrid"
 >
+
     <dx-data-grid
-        id="gridContainer"
+        class="gridContainer"
         [dataSource]="companyData"
         [columns]="columns"
-        [showBorders]="true"
-        [filterValue]="filterValue"
+        [showBorders]="false"
+        [filterValue]="filterValue"        
+        [columnHidingEnabled]="true"
+        [showRowLines]="false"
+        [showColumnLines]="false"
+        [hoverStateEnabled]="true"
     >
         <dxo-export
             [enabled]="true"
@@ -29,17 +27,9 @@
         <dxo-filter-row [visible]="true"></dxo-filter-row>
         <dxo-header-filter [visible]="true"></dxo-header-filter>
         <dxi-column
-            dataField="Actions"
-            cellTemplate="actionTemplate"
-            [allowFiltering]="false"
-            [allowSorting]="false"
-            [hidingPriority]="2"
-            [allowExporting]="false"
-            [allowGrouping]="false"
-        ></dxi-column>
-        <dxi-column
             dataField="date"
             dataType="date"
+            sort="asc"
         ></dxi-column>
         <dxi-column
             dataField="open"
@@ -72,23 +62,13 @@
             dataType="number"
         ></dxi-column>
 
-        <dxo-paging [pageSize]="10"></dxo-paging>
+        <dxo-paging [pageSize]="15"></dxo-paging>
         <dxo-pager
             [showPageSizeSelector]="true"
             [allowedPageSizes]="[10,15,20]"
             [showInfo]="true"
         >
         </dxo-pager>
-
-        <div *dxTemplate="let element of 'actionTemplate'">
-            <button
-                mat-icon-button
-                color="primary"
-                (click)="routeToAddForm(element.data)"
-            >
-                <mat-icon matTooltip="Add">add</mat-icon>
-            </button>
-        </div>
 
     </dx-data-grid>
 </div>

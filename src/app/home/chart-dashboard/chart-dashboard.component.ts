@@ -12,8 +12,6 @@ export class ChartDashboardComponent {
   @ViewChild("chart1",{static: false}) 
   chart1: DxChartComponent
 
-  @ViewChild("chart2",{static: false}) 
-  chart2: DxChartComponent
 
   prepareChart : boolean = false;
   cols : number = 2;
@@ -25,7 +23,7 @@ export class ChartDashboardComponent {
         return [
           { id:1,title: 'Chart 1', cols: 1, rows: 1 },
           { id:2,title: 'Chart 2', cols: 1, rows: 1 },
-          { id:3,title: 'Chart 3', cols: 1, rows: 1 },
+          { id:3,title: 'Chart 3', cols: 1, rows: 3 },
           { id:4,title: 'Chart 4', cols: 1, rows: 1 }
         ];
       }
@@ -39,6 +37,8 @@ export class ChartDashboardComponent {
     })
   );
   
+  
+  public tiles: number[] = [1, 2, 3, 4, 5, 6];
   
   constructor(private breakpointObserver: BreakpointObserver) {
     setTimeout(() => {
@@ -166,7 +166,6 @@ export class ChartDashboardComponent {
   @HostListener('window:resize')
   public onResize() {
     this.chart1.instance.refresh();
-    this.chart2.instance.render();
   }
 
     customizeTooltip(arg: any) {

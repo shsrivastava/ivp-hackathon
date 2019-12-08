@@ -4,7 +4,7 @@ import { DashboardComponent } from './dashboard/dashboard.component';
 import { HomeRouteModule } from './home.route';
 import { ChartComponent } from './chart/chart.component';
 import { AnalyticsCardComponent } from './analytics-card/analytics-card.component';
-import { MatCardModule, MatIconModule } from '@angular/material';
+import { MatCardModule, MatIconModule, MatStepperModule, MatFormFieldModule, MatInputModule, MatSelectModule, MatAutocompleteModule } from '@angular/material';
 import { DxDataGridModule } from 'devextreme-angular';
 import { ChartDashboardComponent } from './chart-dashboard/chart-dashboard.component';
 import { MatGridListModule } from '@angular/material/grid-list';
@@ -12,12 +12,15 @@ import { MatMenuModule } from '@angular/material/menu';
 import { MatButtonModule } from '@angular/material/button';
 import { LayoutModule } from '@angular/cdk/layout';
 import { DxChartModule } from 'devextreme-angular';
+import { GridViewComponent } from './grid-view/grid-view.component';
+import { AddFormComponent } from './add-form/add-form.component';
+import { ReactiveFormsModule } from '@angular/forms';
 
 
 
 
 @NgModule({
-  declarations: [DashboardComponent, ChartComponent, AnalyticsCardComponent, ChartDashboardComponent],
+  declarations: [DashboardComponent, ChartComponent, AnalyticsCardComponent, ChartDashboardComponent, GridViewComponent, AddFormComponent],
   imports: [
     HomeRouteModule,
     CommonModule,
@@ -28,7 +31,13 @@ import { DxChartModule } from 'devextreme-angular';
     MatMenuModule,
     MatButtonModule,
     LayoutModule,
-    DxChartModule
+    DxChartModule,
+    MatStepperModule,
+    ReactiveFormsModule,
+    MatFormFieldModule,
+    MatInputModule,
+    MatSelectModule,
+    MatAutocompleteModule
   ]
 })
 export class HomeModule { }

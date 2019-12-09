@@ -2,8 +2,15 @@
 /* 
 Base and accent colors
 */
-$clr-dark-base:mat-color($hackathon-app-primary,800);
-$clr-base:mat-color($hackathon-app-primary,500);
-$clr-accent:mat-color($hackathon-app-accent,500);
-$clr-warn:mat-color($hackathon-app-warn,500);
-$clr-base-1-light:mat-color($hackathon-app-primary,400);
+$clr-dark-base:mat-color($hackathon-app-primary, 800);
+$clr-base:mat-color($hackathon-app-primary, 500);
+$clr-base-3-light:mat-color($hackathon-app-primary, 200);
+$clr-base-1-light:mat-color($hackathon-app-primary, 400);
+$clr-base-2-light:mat-color($hackathon-app-primary, 300);
+$clr-base-light-bk:mat-color($hackathon-app-primary, 50);
+
+$clr-accent:mat-color($hackathon-app-accent, 500);
+$clr-accent-light-bk:mat-color($hackathon-app-accent, 50);
+$clr-accent-light:mat-color($hackathon-app-accent, 100);
+
+$clr-warn:mat-color($hackathon-app-warn, 500);

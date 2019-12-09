@@ -1,148 +1,98 @@
-<mat-grid-list [cols]="1" rowHeight="85vh">
-    <mat-grid-tile
-        [colspan]="1"
-        [rowspan]="1"
-    >
+<div class="grid-container full-height">
+    <mat-card class="container">
+        <mat-horizontal-stepper [linear]="false" #stepper>
+            <mat-step [stepControl]="partyFormGroup" [optional]="false">
+                <form [formGroup]="partyFormGroup">
+                    <ng-template matStepLabel>Party</ng-template>
+                    <div class="row">
+                        <div class="col-sm-4">
 
-        <mat-card class="container">
-            <mat-horizontal-stepper
-                [linear]="false"
-                #stepper
-            >
-                <mat-step
-                    [stepControl]="partyFormGroup"
-                    [optional]="false"
-                >
-                        <form [formGroup]="partyFormGroup">
-                            <ng-template matStepLabel>Party</ng-template>
-                            <div class="row">
-                                <div class="col-sm-4">
+                            <mat-form-field>
+                                <input matInput placeholder="Legal Name" formControlName="legalName" required>
+                            </mat-form-field>
 
-                                    <mat-form-field>
-                                        <input
-                                            matInput
-                                            placeholder="Legal Name"
-                                            formControlName="legalName"
-                                            required
-                                        >
-                                    </mat-form-field>
+                        </div>
+                        <div class="col-sm-4">
 
-                                </div>
-                                <div class="col-sm-4">
+                            <mat-form-field>
 
-                                    <mat-form-field>
+                                <mat-label>Parent Party</mat-label>
+                                <mat-select>
+                                    <mat-option *ngFor="let pp of parentPartyLst" [value]="pp.value">
+                                        {{pp.viewValue}}
+                                    </mat-option>
+                                </mat-select>
+                            </mat-form-field>
 
-                                        <mat-label>Parent Party</mat-label>
-                                        <mat-select>
-                                            <mat-option
-                                                *ngFor="let pp of parentPartyLst"
-                                                [value]="pp.value"
-                                            >
-                                                {{pp.viewValue}}
-                                            </mat-option>
-                                        </mat-select>
-                                    </mat-form-field>
+                        </div>
+                        <div class="col-sm-4">
 
-                                </div>
-                                <div class="col-sm-4">
+                            <mat-form-field>
+                                <input type="text" matInput placeholder="Country of Domicile" formControlName="country"
+                                    required [matAutocomplete]="autoGroup">
+                                <mat-autocomplete #autoGroup="matAutocomplete">
+                                    <mat-optgroup *ngFor="let group of stateGroupOptions | async"
+                                        [label]="group.letter">
+                                        <mat-option *ngFor="let name of group.names" [value]="name">
+                                            {{name}}
+                                        </mat-option>
+                                    </mat-optgroup>
+                                </mat-autocomplete>
+                            </mat-form-field>
 
-                                    <mat-form-field>
-                                        <input
-                                            type="text"
-                                            matInput
-                                            placeholder="Country of Domicile"
-                                            formControlName="country"
-                                            required
-                                            [matAutocomplete]="autoGroup"
-                                        >
-                                        <mat-autocomplete #autoGroup="matAutocomplete">
-                                            <mat-optgroup
-                                                *ngFor="let group of stateGroupOptions | async"
-                                                [label]="group.letter"
-                                            >
-                                                <mat-option
-                                                    *ngFor="let name of group.names"
-                                                    [value]="name"
-                                                >
-                                                    {{name}}
-                                                </mat-option>
-                                            </mat-optgroup>
-                                        </mat-autocomplete>
-                                    </mat-form-field>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-sm-4">
 
-                                </div>
-                            </div>
-                            <div class="row">
-                                <div class="col-sm-4">
+                            <mat-form-field>
+                                <input matInput placeholder="Internal Id" formControlName="internalId" required>
+                            </mat-form-field>
 
-                                    <mat-form-field>
-                                        <input
-                                            matInput
-                                            placeholder="Internal Id"
-                                            formControlName="internalId"
-                                            required
-                                        >
-                                    </mat-form-field>
+                        </div>
+                        <div class="col-sm-4">
 
-                                </div>
-                                <div class="col-sm-4">
+                            <mat-form-field>
 
-                                    <mat-form-field>
+                                <mat-label>Ultimate Parent Party</mat-label>
+                                <mat-select>
+                                    <mat-option *ngFor="let pp of parentPartyLst" [value]="pp.value">
+                                        {{pp.viewValue}}
+                                    </mat-option>
+                                </mat-select>
+                            </mat-form-field>
 
-                                        <mat-label>Ultimate Parent Party</mat-label>
-                                        <mat-select>
-                                            <mat-option
-                                                *ngFor="let pp of parentPartyLst"
-                                                [value]="pp.value"
-                                            >
-                                                {{pp.viewValue}}
-                                            </mat-option>
-                                        </mat-select>
-                                    </mat-form-field>
+                        </div>
+                        <div class="col-sm-4">
 
-                                </div>
-                                <div class="col-sm-4">
+                            <mat-form-field>
+                                <mat-label>Country of Risk</mat-label>
+                                <mat-select>
+                                    <mat-option *ngFor="let c of countries" [value]="c">
+                                        {{c}}
+                                    </mat-option>
+                                </mat-select>
+                            </mat-form-field>
 
-                                    <mat-form-field>
-                                        <mat-label>Country of Risk</mat-label>
-                                        <mat-select>
-                                            <mat-option
-                                                *ngFor="let c of countries"
-                                                [value]="c"
-                                            >
-                                                {{c}}
-                                            </mat-option>
-                                        </mat-select>
-                                    </mat-form-field>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-sm-4">
 
-                                </div>
-                            </div>
-                            <div class="row">
-                                <div class="col-sm-4">
+                            <mat-form-field>
+                                <input matInput placeholder="Short Name" formControlName="shortName" required>
+                            </mat-form-field>
 
-                                    <mat-form-field>
-                                        <input
-                                            matInput
-                                            placeholder="Short Name"
-                                            formControlName="shortName"
-                                            required
-                                        >
-                                    </mat-form-field>
+                        </div>
+                        <div class="col-sm-4">
 
-                                </div>
-                                <div class="col-sm-4">
+                            <mat-form-field>
+                                <input matInput placeholder="Party Status" formControlName="partyStatus">
+                            </mat-form-field>
 
-                                    <mat-form-field>
-                                        <input
-                                            matInput
-                                            placeholder="Party Status"
-                                            formControlName="partyStatus"
-                                        >
-                                    </mat-form-field>
-
-                                </div>
-                            </div>
-                            <!-- <div>
+                        </div>
+                    </div>
+                    <!-- <div>
                         <button
                             mat-button
                             matStepperNext
@@ -151,20 +101,15 @@
                             Next
                         </button>
                     </div> -->
-                        </form>
-                </mat-step>
-                <mat-step [stepControl]="secondFormGroup">
-                    <form [formGroup]="secondFormGroup">
-                        <ng-template matStepLabel>Identifiers</ng-template>
-                        <mat-form-field>
-                            <input
-                                matInput
-                                placeholder="ISIN"
-                                formControlName="isin"
-                                required
-                            >
-                        </mat-form-field>
-                        <!-- <div>
+                </form>
+            </mat-step>
+            <mat-step [stepControl]="secondFormGroup">
+                <form [formGroup]="secondFormGroup">
+                    <ng-template matStepLabel>Identifiers</ng-template>
+                    <mat-form-field>
+                        <input matInput placeholder="ISIN" formControlName="isin" required>
+                    </mat-form-field>
+                    <!-- <div>
                         <button
                             mat-button
                             matStepperPrevious
@@ -178,14 +123,14 @@
                             Next
                         </button>
                     </div> -->
-                    </form>
-                </mat-step>
+                </form>
+            </mat-step>
 
-                <mat-step [stepControl]="thirdFormGroup">
-                    <form [formGroup]="thirdFormGroup">
-                        <ng-template matStepLabel>Communication Preference</ng-template>
-                        <div>Form to be added</div>
-                        <!-- <div>
+            <mat-step [stepControl]="thirdFormGroup">
+                <form [formGroup]="thirdFormGroup">
+                    <ng-template matStepLabel>Communication Preference</ng-template>
+                    <div>Form to be added</div>
+                    <!-- <div>
                         <button
                             mat-button
                             matStepperPrevious
@@ -199,14 +144,14 @@
                             Next
                         </button>
                     </div> -->
-                    </form>
-                </mat-step>
+                </form>
+            </mat-step>
 
-                <mat-step [stepControl]="fourthFormGroup">
-                    <form [formGroup]="fourthFormGroup">
-                        <ng-template matStepLabel>Counterparty</ng-template>
-                        <div>Form to be added</div>
-                        <!-- <div>
+            <mat-step [stepControl]="fourthFormGroup">
+                <form [formGroup]="fourthFormGroup">
+                    <ng-template matStepLabel>Counterparty</ng-template>
+                    <div>Form to be added</div>
+                    <!-- <div>
                         <button
                             mat-button
                             matStepperPrevious
@@ -220,14 +165,14 @@
                             Next
                         </button>
                     </div> -->
-                    </form>
-                </mat-step>
+                </form>
+            </mat-step>
 
-                <mat-step [stepControl]="fifthFormGroup">
-                    <form [formGroup]="fifthFormGroup">
-                        <ng-template matStepLabel>Trading Venue</ng-template>
-                        <div>Form to be added</div>
-                        <!-- <div>
+            <mat-step [stepControl]="fifthFormGroup">
+                <form [formGroup]="fifthFormGroup">
+                    <ng-template matStepLabel>Trading Venue</ng-template>
+                    <div>Form to be added</div>
+                    <!-- <div>
                         <button
                             mat-button
                             matStepperPrevious
@@ -241,21 +186,14 @@
                             Next
                         </button>
                     </div> -->
-                    </form>
-                </mat-step>
+                </form>
+            </mat-step>
 
-            </mat-horizontal-stepper>
-            <div class="add-footer">
-                <button
-                    mat-raised-button
-                    color="primary"
-                    class="add-btn"
-                    [disabled]="isButtonEnabled()"
-                >
-                    Add
-                </button>
-            </div>
-        </mat-card>
-
-    </mat-grid-tile>
-</mat-grid-list>
+        </mat-horizontal-stepper>
+        <div class="add-footer">
+            <button mat-raised-button color="accent" class="add-btn" [disabled]="isButtonEnabled()">
+                Add
+            </button>
+        </div>
+    </mat-card>
+</div>

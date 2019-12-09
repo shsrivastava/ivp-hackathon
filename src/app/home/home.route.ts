@@ -10,12 +10,9 @@ import { AddFormComponent } from './add-form/add-form.component';
     RouterModule.forChild([
       {
         path: "dashboard",
-        component: DashboardComponent,
-      },{
-        path: "home/charts",
         component: ChartDashboardComponent,
       },{
-        path: "home/add-form",
+        path: "add-form",
         component: AddFormComponent,
       },
     ])

@@ -1,19 +1,29 @@
 @import './styles/light-theme.scss';
-@import './styles/dark-theme.scss';
+@import './styles/colors.scss';
 
 /* You can add global styles to this file, and also import other style files */
-
-html, body { height: 100%; }
-body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
-
-
-.pointer{
-    cursor: pointer;
+html,
+body {
+  height: 100%;
 }
 
+body {
+  margin: 0;
+  font-family: Roboto, "Helvetica Neue", sans-serif;
+  background-color: $clr-accent-light-bk !important;
+}
+
+.pointer {
+  cursor: pointer;
+}
+
+.grid-container {
+  padding: 20px;
+  background: $clr-accent-light-bk !important;
+}
 
 /* Hides all the html scrollbars anywhere in the DOM */
 
 .invisible-scrollbar::-webkit-scrollbar {
-    display: none;
-  }
+  display: none;
+}

@@ -24,9 +24,18 @@
     <ng-content></ng-content>
 
 </dx-drawer> -->
-<mat-toolbar color="primary">
-  
-  <mat-icon class="pointer" (click)="drawer.toggle()">menu</mat-icon>
+<mat-toolbar class="app-nav mat-elevation-z4" role="heading">
+  <mat-toolbar-row>
+    <mat-icon class="pointer menu-logo" (click)="drawer.toggle()">menu</mat-icon>
+    <span>&nbsp;Hackathon App</span>
+    <span class="example-spacer"></span>
+    <span><mat-chip-list><mat-chip disabled="true">Page Header</mat-chip></mat-chip-list></span>    
+    <span class="example-spacer"></span>
+    <mat-icon aria-hidden="false">person_pin</mat-icon>Demo Hacker
+    <button type="button" matTooltip="Logout" mat-icon-button>
+      <mat-icon>exit_to_app</mat-icon>
+    </button>
+  </mat-toolbar-row>
 </mat-toolbar>
 
 <!-- <mat-sidenav-container>
@@ -44,30 +53,15 @@
       </div>
     </mat-sidenav-content>
   </mat-sidenav-container>  -->
-  <mat-drawer-container class="example-container" [hasBackdrop]="false">
-      <mat-drawer #drawer [mode]="'push'">
-          <mat-nav-list>  
-              <a mat-list-item [routerLink]="'/dashboard'"> Dashboard </a>
-              <a mat-list-item [routerLink]="'/home/charts'"> Visualize </a>
-              <a mat-list-item [routerLink]="'/whiteboard/boards'"> Whiteboards </a>  
-            </mat-nav-list>
-      </mat-drawer>
-      <mat-drawer-content>
-          <!-- <mat-sidenav-container>
-              <mat-sidenav #sidenav [mode]="'push'"> -->
-                <!-- <mat-nav-list>  
-                  <a mat-list-item [routerLink]="'/dashboard'"> Dashboard </a>
-                  <a mat-list-item [routerLink]="'/home/charts'"> Visualize </a>
-                  <a mat-list-item [routerLink]="'/whitebaord'"> Whiteboards </a>  
-                </mat-nav-list> -->
-              <!-- </mat-sidenav>
-              <mat-sidenav-content>
-                <div style="height: 88vh;">
-            
-                  <router-outlet></router-outlet>
-                </div>
-              </mat-sidenav-content>
-            </mat-sidenav-container> -->
-                  <router-outlet></router-outlet>
-                </mat-drawer-content>
-  </mat-drawer-container>
+<mat-drawer-container class="example-container" [hasBackdrop]="false">
+  <mat-drawer #drawer [mode]="'push'" class="menu">
+    <mat-nav-list>
+      <a mat-list-item [routerLink]="'/dashboard'"> Dashboard </a>
+      <a mat-list-item [routerLink]="'/add-form'"> Add Form </a>
+      <a mat-list-item [routerLink]="'/whiteboard/boards'"> Whiteboards </a>
+    </mat-nav-list>
+  </mat-drawer>
+  <mat-drawer-content>
+    <router-outlet></router-outlet>
+  </mat-drawer-content>
+</mat-drawer-container>

@@ -8,7 +8,7 @@ import { ToolbarComponent } from './toolbar/toolbar.component';
 import { HomeModule } from './home/home.module';
 import { DxDrawerComponent, DxDrawerModule, DxListModule, DxRadioGroupModule, DxToolbarModule } from 'devextreme-angular';
 import {
-  MatCardModule, MatToolbarModule, MatIconModule, MatSidenavModule, MatListModule, MatButtonModule,  
+  MatCardModule, MatToolbarModule, MatIconModule, MatSidenavModule, MatListModule, MatButtonModule, MatTooltipModule, MatChipsModule,  
 } from "@angular/material";
 import { WhiteboardModule } from './whiteboard/whiteboard.module';
 import { HttpClientModule } from '@angular/common/http';
@@ -29,6 +29,8 @@ import { HttpClientModule } from '@angular/common/http';
     MatSidenavModule,
     MatListModule,
     MatButtonModule,
+    MatTooltipModule,
+    MatChipsModule,
     HttpClientModule
   ],
   providers: [],

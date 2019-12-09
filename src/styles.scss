@@ -24,6 +24,7 @@ body {
 
 /* Hides all the html scrollbars anywhere in the DOM */
 
-.invisible-scrollbar::-webkit-scrollbar {
-  display: none;
+::-webkit-scrollbar {
+  display: none !important;
+  width: 2%
 }

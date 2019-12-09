@@ -25,13 +25,17 @@
 
 </dx-drawer> -->
 <mat-toolbar class="app-nav mat-elevation-z4" role="heading">
-  <mat-toolbar-row>
+  <mat-toolbar-row >
     <mat-icon class="pointer menu-logo" (click)="drawer.toggle()">menu</mat-icon>
     <span>&nbsp;Hackathon App</span>
     <span class="example-spacer"></span>
-    <span><mat-chip-list><mat-chip disabled="true">Page Header</mat-chip></mat-chip-list></span>    
+    <span><mat-chip-list><mat-chip disabled="true">{{getHeader()}}</mat-chip></mat-chip-list></span>    
     <span class="example-spacer"></span>
-    <mat-icon aria-hidden="false">person_pin</mat-icon>Demo Hacker
+    <mat-icon aria-hidden="false" (click)="openAddNote()" style="padding-top:1px" [matBadge]="getStickyCount()" matBadgeColor="accent">speaker_notes</mat-icon>
+    &nbsp;
+    &nbsp;
+    <mat-icon aria-hidden="false">person_pin</mat-icon>
+    <span class="toolbar-content">Demo Hacker</span>
     <button type="button" matTooltip="Logout" mat-icon-button>
       <mat-icon>exit_to_app</mat-icon>
     </button>
@@ -56,9 +60,10 @@
 <mat-drawer-container class="example-container" [hasBackdrop]="false">
   <mat-drawer #drawer [mode]="'push'" class="menu">
     <mat-nav-list>
-      <a mat-list-item [routerLink]="'/dashboard'"> Dashboard </a>
+      <!-- <a mat-list-item [routerLink]="'/dashboard'"> Dashboard </a>
       <a mat-list-item [routerLink]="'/add-form'"> Add Form </a>
-      <a mat-list-item [routerLink]="'/whiteboard/boards'"> Whiteboards </a>
+      <a mat-list-item [routerLink]="'/whiteboard/boards'"> Whiteboards </a> -->
+      <app-menu-list-item *ngFor="let item of navItems" [item]="item"></app-menu-list-item>
     </mat-nav-list>
   </mat-drawer>
   <mat-drawer-content>

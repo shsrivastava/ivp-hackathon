@@ -4,8 +4,8 @@ import { DashboardComponent } from './dashboard/dashboard.component';
 import { HomeRouteModule } from './home.route';
 import { ChartComponent } from './chart/chart.component';
 import { AnalyticsCardComponent } from './analytics-card/analytics-card.component';
-import { MatCardModule, MatIconModule, MatStepperModule, MatFormFieldModule, MatInputModule, MatSelectModule, MatAutocompleteModule } from '@angular/material';
-import { DxDataGridModule } from 'devextreme-angular';
+import { MatCardModule, MatIconModule, MatStepperModule, MatFormFieldModule, MatInputModule, MatSelectModule, MatAutocompleteModule, MatDatepickerModule, MatNativeDateModule, MatSnackBarModule } from '@angular/material';
+import { DxDataGridModule, DxRangeSelectorModule } from 'devextreme-angular';
 import { ChartDashboardComponent } from './chart-dashboard/chart-dashboard.component';
 import { MatGridListModule } from '@angular/material/grid-list';
 import { MatMenuModule } from '@angular/material/menu';
@@ -37,7 +37,11 @@ import { ReactiveFormsModule } from '@angular/forms';
     MatFormFieldModule,
     MatInputModule,
     MatSelectModule,
-    MatAutocompleteModule
+    MatAutocompleteModule,
+    DxRangeSelectorModule,
+    MatDatepickerModule,
+    MatNativeDateModule,
+    MatSnackBarModule
   ]
 })
 export class HomeModule { }

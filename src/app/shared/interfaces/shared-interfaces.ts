@@ -8,4 +8,15 @@ export interface INavMenu {
     text: string;
     icon: string;
 }
+
+export  interface IDialogData {
+    comment: string;
+  }
+
+  export  interface IStickyNoteData {
+    pageId: number;
+    text : string;
+    componentName : string;
+  }
+
 }

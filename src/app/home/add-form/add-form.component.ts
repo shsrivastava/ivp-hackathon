@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import {FormBuilder, FormGroup, Validators} from '@angular/forms';
+import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Observable } from 'rxjs';
 import { startWith, map } from 'rxjs/operators';
 
@@ -24,26 +24,31 @@ export class AddFormComponent implements OnInit {
   fifthFormGroup: FormGroup;
   fourthFormGroup: FormGroup;
   thirdFormGroup: FormGroup;
+  searching: boolean;
 
-  constructor(private _formBuilder: FormBuilder) {}
+  constructor(private _formBuilder: FormBuilder) { }
 
 
   ngOnInit() {
+
+    localStorage.setItem('pageId', JSON.stringify(2));
+    localStorage.setItem('pageHeader', JSON.stringify("Form"));
+
     this.partyFormGroup = this._formBuilder.group({
       legalName: ['', Validators.required],
       parentParty: ['2', Validators.required],
       country: ['', Validators.required],
-      internalId :['',Validators.required],
-      ultimateParentParty : [''],
-      countryRisk:[''],
-      shortName:['',Validators.required],
-      partyStatus : ['']
+      internalId: ['', Validators.required],
+      ultimateParentParty: [''],
+      countryRisk: [''],
+      shortName: ['', Validators.required],
+      partyStatus: [new Date()]
     });
     this.secondFormGroup = this._formBuilder.group({
       isin: ['', Validators.required]
     });
 
-  
+
     this.thirdFormGroup = this._formBuilder.group({
       thirdCtrl: ['']
     });
@@ -57,10 +62,10 @@ export class AddFormComponent implements OnInit {
     });
 
     this.stateGroupOptions = this.partyFormGroup.get('country')!.valueChanges
-    .pipe(
-      startWith(''),
-      map(value => this._filterGroup(value))
-    );
+      .pipe(
+        startWith(''),
+        map(value => this._filterGroup(value))
+      );
 
     console.log(this.partyFormGroup)
   }
@@ -71,27 +76,27 @@ export class AddFormComponent implements OnInit {
   private _filterGroup(value: string): any[] {
     if (value) {
       return this.stateGroups
-        .map(group => ({letter: group.letter, names: _filter(group.names, value)}))
+        .map(group => ({ letter: group.letter, names: _filter(group.names, value) }))
         .filter(group => group.names.length > 0);
     }
 
     return this.stateGroups;
   }
 
-isButtonEnabled(){
-  if(this.partyFormGroup.valid && this.secondFormGroup.valid && this.thirdFormGroup.valid && this.fourthFormGroup.valid && this.fifthFormGroup.valid){return false}
-  else{return true;}
-}
+  isButtonEnabled() {
+    if (this.partyFormGroup.valid && this.secondFormGroup.valid && this.thirdFormGroup.valid && this.fourthFormGroup.valid && this.fifthFormGroup.valid) { return false }
+    else { return true; }
+  }
 
   parentPartyLst: any = [
-    {value: '1', viewValue: 'GS1'},
-    {value: '2', viewValue: 'GS2'},
-    {value: '3', viewValue: 'GS3'}
+    { value: '1', viewValue: 'GS1' },
+    { value: '2', viewValue: 'GS2' },
+    { value: '3', viewValue: 'GS3' }
   ];
 
 
-  countries : any[]=['Alabama', 'Alaska', 'Arizona', 'Arkansas','California', 'Colorado', 'Connecticut','Idaho', 'Illinois', 'Indiana', 'Iowa',]
-  
+  countries: any[] = ['Alabama', 'Alaska', 'Arizona', 'Arkansas', 'California', 'Colorado', 'Connecticut', 'Idaho', 'Illinois', 'Indiana', 'Iowa',]
+
   stateGroups: any = [{
     letter: 'A',
     names: ['Alabama', 'Alaska', 'Arizona', 'Arkansas']
@@ -153,4 +158,8 @@ isButtonEnabled(){
     names: ['Washington', 'West Virginia', 'Wisconsin', 'Wyoming']
   }];
 
+
+
+
 }
+

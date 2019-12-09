@@ -1,17 +1,24 @@
 <div class="grid-container">
-  <!-- <h1 class="mat-h1">Dashboard</h1> -->
-  <div class="container">
-      <app-analytics-card
-          *ngFor="let t of tiles"
-          class="col-sm-2"
-          [body]="'1,211'"
-      ></app-analytics-card>
-  </div>
+    <!-- <h1 class="mat-h1">Dashboard</h1> -->
+    <div class="container">
+        <app-analytics-card
+            *ngFor="let t of tiles"
+            class="col-sm-2"
+            [body]="'1,211'"
+        ></app-analytics-card>
+    </div>
 
-  <mat-grid-list [cols]="cols" rowHeight="40vh">
-    <mat-grid-tile *ngFor="let card of cards | async" [colspan]="card.cols" [rowspan]="card.rows">
-      <mat-card class="dashboard-card">
-        <!-- <mat-card-header>
+    <mat-grid-list
+        [cols]="cols"
+        rowHeight="40vh"
+    >
+        <mat-grid-tile
+            *ngFor="let card of cards | async"
+            [colspan]="card.cols"
+            [rowspan]="card.rows"
+        >
+            <mat-card class="dashboard-card">
+                <!-- <mat-card-header>
           <mat-card-title>
             {{card.title}}
             <button mat-icon-button class="more-button" [matMenuTriggerFor]="menu" aria-label="Toggle menu">
@@ -22,80 +29,169 @@
               <button mat-menu-item>Remove</button>
             </mat-menu>
           </mat-card-title> -->
-        <!-- </mat-card-header> -->
-        <mat-card-content class="dashboard-card-content">
-          <div *ngIf="card.id==3"> <app-grid-view></app-grid-view></div>
-          <div *ngIf="card.id==0 && prepareChart">
-              <dx-chart
-              #chart2
-              id="chart"
-              [redrawOnResize]="true"
-              [dataSource]="dataSource"
-              [title]="title"
-              [palette]="['#00ced1', '#008000', '#ffd700', '#ff7f50']"
-              (onSeriesClick)="onSeriesClick($event)">
-              <dxo-common-series-settings type="bubble"></dxo-common-series-settings>
-              <dxo-export [enabled]="true"></dxo-export>
-              <dxo-legend
-                  position="inside"
-                  horizontalAlignment="left">
-                  <dxo-border [visible]="true"></dxo-border>
-              </dxo-legend>
-              <dxo-argument-axis title="Total Population">
-                  <dxo-label [customizeText]="argumentCustomizeText"></dxo-label>
-              </dxo-argument-axis>
-              <dxi-value-axis title="Population with Age over 60">
-                  <dxo-label [customizeText]="valueCustomizeText"></dxo-label>
-              </dxi-value-axis>
-              <dxo-tooltip
-                  [enabled]="true"
-                  location="edge"
-                  [customizeTooltip]="customizeTooltip">
-              </dxo-tooltip>
-              <dxi-series
-                  *ngFor="let correlation of correlationSource"
-                  [name]="correlation.name"
-                  [argumentField]="correlation.argumentField"
-                  [valueField]="correlation.valueField"
-                  [sizeField]="correlation.sizeField"
-                  [tagField]="correlation.tagField">
-              </dxi-series>
-          </dx-chart>
+                <!-- </mat-card-header> -->
 
-          </div>
-          <div *ngIf="card.id!=3 && prepareChart">
-              <dx-chart
-              #chart1
-              id="chart"
-              [redrawOnResize]="true"
-              palette="violet"
-              title="Crude Oil Prices in 2005"
-              [dataSource]="oilPrices">
-              <dxo-common-series-settings
-                  argumentField="date"
-                  type="rangeBar"></dxo-common-series-settings>
-              <dxi-value-axis>
-                  <dxo-title text="$ per barrel"></dxo-title>
-              </dxi-value-axis>
-              <dxo-argument-axis>
-                  <dxo-label format="month"></dxo-label>
-              </dxo-argument-axis>
-              <dxo-export [enabled]="true"></dxo-export>
-              <dxo-legend
-                  verticalAlignment="bottom"
-                  horizontalAlignment="center"></dxo-legend>
-              <dxi-series
-                  rangeValue1Field="aVal1"
-                  rangeValue2Field="aVal2"
-                  name="ANS West Coast"></dxi-series>
-              <dxi-series
-                  rangeValue1Field="tVal1"
-                  rangeValue2Field="tVal2"
-                  name="West Texas Intermediate"></dxi-series>
-          </dx-chart>
-          </div>
-        </mat-card-content>
-      </mat-card>
-    </mat-grid-tile>
-  </mat-grid-list>
+                <mat-card-content class="dashboard-card-content">
+
+                    <div *ngIf="card.id==3">
+                        <app-grid-view></app-grid-view>
+                    </div>
+                    <div *ngIf="card.id==1 && prepareChart">
+                        <div
+                            id="chart-demo"
+                            class="row"
+                        >
+                            <div class="col-sm-12">
+
+                                <dx-chart
+                                    #zoomChart
+                                    id="zoomedChart"
+                                    [dataSource]="stockPrices"
+                                    title="Google Inc. Stock Prices"
+                                >
+                                    <dxi-series
+                                        type="candleStick"
+                                        openValueField="Open"
+                                        highValueField="High"
+                                        lowValueField="Low"
+                                        closeValueField="Close"
+                                        argumentField="Date"
+                                    >
+                                        <dxo-aggregation [enabled]="true"></dxo-aggregation>
+                                    </dxi-series>
+                                    <dxo-margin [right]="10"></dxo-margin>
+                                    <dxi-value-axis valueType="numeric"></dxi-value-axis>
+                                    <dxo-argument-axis
+                                        [valueMarginsEnabled]="false"
+                                        argumentType="datetime"
+                                        [visualRange]="visualRange"
+                                    >
+                                        <dxo-grid [visible]="true"></dxo-grid>
+                                        <dxo-label [visible]="false"></dxo-label>
+                                    </dxo-argument-axis>
+                                    <dxo-legend [visible]="false"></dxo-legend>
+                                    <dxo-tooltip [enabled]="true"></dxo-tooltip>
+                                </dx-chart>
+                                <dx-range-selector
+                                    [dataSource]="stockPrices"
+                                    [(value)]="visualRange"
+                                >
+                                    <dxo-size [height]="120"></dxo-size>
+                                    <dxo-scale
+                                        minorTickInterval="day"
+                                        tickInterval="month"
+                                        valueType="datetime"
+                                        aggregationInterval="week"
+                                        [placeholderHeight]="20"
+                                    >
+                                    </dxo-scale>
+                                    <dxo-behavior
+                                        callValueChanged="onMoving"
+                                        [snapToTicks]="false"
+                                    >
+                                    </dxo-behavior>
+                                    <dxo-chart>
+                                        <dxo-value-axis valueType="numeric"></dxo-value-axis>
+                                        <dxi-series
+                                            type="line"
+                                            valueField="Open"
+                                            argumentField="Date"
+                                        >
+                                            <dxo-aggregation [enabled]="true"></dxo-aggregation>
+                                        </dxi-series>
+                                    </dxo-chart>
+                                </dx-range-selector>
+                            </div>
+                            <!-- <div class="col-sm-6">
+                   </div> -->
+
+                        </div>
+                    </div>
+                    <div *ngIf="card.id==4 && prepareChart">
+                        <dx-chart
+                            #chart2
+                            id="chart"
+                            [redrawOnResize]="true"
+                            [dataSource]="dataSource"
+                            [title]="title"
+                            [palette]="['#00ced1', '#008000', '#ffd700', '#ff7f50']"
+                            (onSeriesClick)="onSeriesClick($event)"
+                        >
+                            <dxo-common-series-settings type="bubble"></dxo-common-series-settings>
+                            <dxo-export [enabled]="true"></dxo-export>
+                            <dxo-legend
+                                position="inside"
+                                horizontalAlignment="left"
+                            >
+                                <dxo-border [visible]="true"></dxo-border>
+                            </dxo-legend>
+                            <dxo-argument-axis title="Total Value">
+                                <dxo-label [customizeText]="argumentCustomizeText"></dxo-label>
+                            </dxo-argument-axis>
+                            <dxi-value-axis title="Value in Example Region">
+                                <dxo-label [customizeText]="valueCustomizeText"></dxo-label>
+                            </dxi-value-axis>
+                            <dxo-tooltip
+                                [enabled]="true"
+                                location="edge"
+                                [customizeTooltip]="customizeTooltip"
+                            >
+                            </dxo-tooltip>
+                            <dxi-series
+                                *ngFor="let correlation of correlationSource"
+                                [name]="correlation.name"
+                                [argumentField]="correlation.argumentField"
+                                [valueField]="correlation.valueField"
+                                [sizeField]="correlation.sizeField"
+                                [tagField]="correlation.tagField"
+                            >
+                            </dxi-series>
+                        </dx-chart>
+
+                    </div>
+                    <div *ngIf="card.id==2 && prepareChart">
+                        <dx-chart
+                            #chart1
+                            id="chart"
+                            [redrawOnResize]="true"
+                            palette="violet"
+                            title="Prices in 2019"
+                            [dataSource]="oilPrices"
+                        >
+                            <dxo-common-series-settings
+                                argumentField="date"
+                                type="rangeBar"
+                            ></dxo-common-series-settings>
+                            <dxi-value-axis>
+                                <dxo-title text="$"></dxo-title>
+                            </dxi-value-axis>
+                            <dxo-argument-axis>
+                                <dxo-label format="month"></dxo-label>
+                            </dxo-argument-axis>
+                            <dxo-export [enabled]="true"></dxo-export>
+                            <dxo-legend
+                                verticalAlignment="bottom"
+                                horizontalAlignment="center"
+                            ></dxo-legend>
+                            <dxi-series
+                                rangeValue1Field="aVal1"
+                                rangeValue2Field="aVal2"
+                                name="Exchange1"
+                            ></dxi-series>
+                            <dxi-series
+                                rangeValue1Field="tVal1"
+                                rangeValue2Field="tVal2"
+                                name="Exchange2"
+                            ></dxi-series>
+                        </dx-chart>
+                    </div>
+                </mat-card-content>
+                <mat-card-footer>
+                        <button mat-icon-button color="accent" aria-label="Example icon-button with a heart icon" (click)="addCompToSticky()">
+                                <mat-icon>note_add</mat-icon>
+                              </button>
+                </mat-card-footer>
+            </mat-card>
+        </mat-grid-tile>
+    </mat-grid-list>
 </div>

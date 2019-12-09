@@ -20,6 +20,9 @@ public filterValue : Array<any> =[]
   ngOnInit() {
     this.showGrid = false;
     this.getCompanyData();
+    
+  localStorage.setItem('pageHeader', JSON.stringify(1));
+  localStorage.setItem('pageHeader', JSON.stringify("Dashboard"));
   }
 
   public tiles: number[] = [1, 2, 3, 4, 5, 6];
